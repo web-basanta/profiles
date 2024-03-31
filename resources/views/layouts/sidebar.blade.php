@@ -5,7 +5,7 @@
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+      <div class="sidebar-brand-text mx-3">DiGiWEB-CAM<sup>2.0</sup></div>
     </a>
     
     <!-- Divider -->
@@ -25,7 +25,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-link" href="/profile">
+      <a class="nav-link" href="{{ route('profile') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Profile</span></a>
     </li>
