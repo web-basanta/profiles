@@ -3,7 +3,7 @@
 @section('title', 'Profile')
   
 @section('contents')
-    <h1 class="mb-0">Profile</h1>
+    <h4 class="mb-0">Profile</h4>
     <hr />
  
     <form method="POST" enctype="multipart/form-data" id="profile_setup_frm" action="" >

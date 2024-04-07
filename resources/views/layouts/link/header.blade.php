@@ -14,4 +14,5 @@
   
   <!-- Custom styles for this template-->
   <link href="{{ asset('admin_assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('admin_assets/richtexteditor/rte_theme_default.css') }}" rel="stylesheet">
 </head>
