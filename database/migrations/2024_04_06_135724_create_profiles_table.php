@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->longText('name');
-            $table->integer('phone_one');
-            $table->integer('phone_two');
+            $table->string('phone_one');
+            $table->string('phone_two');
             $table->longText('address');
             $table->string('gender');
             $table->text('links');

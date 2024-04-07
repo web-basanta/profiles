@@ -15,19 +15,28 @@
                 <div class="row mb-3">
                     <label for="" class="card text-center p-2"><i class="fa fa-user fa-fw"></i></label>
                     <div class="col">
-                        <input type="text" name="f-name" class="form-control" placeholder="Frist Name">
+                        <input type="text" name="f-name" class="form-control @error('f-name')is-invalid @enderror" placeholder="Frist Name">
+                        @if ($errors->has('f-name'))
+                            <span class="invalid-feedback">{{ $errors->first('f-name') }}</span>
+                        @endif
                     </div>
                     <div class="col">
                         <input type="text" name="m-name" class="form-control" placeholder="Middle Name">
                     </div>
                     <div class="col">
-                        <input type="text" name="l-name" class="form-control" placeholder="Last Name">
+                        <input type="text" name="l-name" class="form-control @error('l-name')is-invalid @enderror" placeholder="Last Name">
+                        @if ($errors->has('l-name'))
+                            <span class="invalid-feedback">{{ $errors->first('l-name') }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="" class="card text-center p-2"><i class="fa fa-envelope fa-fw"></i></label>
                     <div class="col">
-                        <input type="text" name="p-email" class="form-control" placeholder="Primary Email ">
+                        <input type="text" name="p-email" class="form-control  @error('p-email')is-invalid @enderror" placeholder="Primary Email ">
+                        @if ($errors->has('p-email'))
+                            <span class="invalid-feedback">{{ $errors->first('p-email') }}</span>
+                        @endif
                     </div>
                     <div class="col">
                         <input type="text" name="s-email" class="form-control" placeholder="Secondary Email">
@@ -36,7 +45,10 @@
                 <div class="row mb-3">
                     <label for="" class="card text-center p-2"><i class="fa fa-phone fa-fw"></i></label>
                     <div class="col">
-                        <input type="text" name="p-one" class="form-control" placeholder="Primary Mobile ">
+                        <input type="text" name="p-one" class="form-control  @error('p-one')is-invalid @enderror" placeholder="Primary Mobile ">
+                        @if ($errors->has('p-one'))
+                            <span class="invalid-feedback">{{ $errors->first('p-one') }}</span>
+                        @endif
                     </div>
                     <div class="col">
                         <input type="text" name="s-two" class="form-control" placeholder="Secondary Mobile">
