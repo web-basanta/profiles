@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfilesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +58,16 @@ Route::middleware('auth')->group(function () {
         Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
     });
  
-    Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
+    Route::get('/admin-profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('admin-profile');
+
+    Route::controller(ProfilesController::class)->prefix('profile')->group(function () {
+        Route::get('', 'index')->name('profile');
+        Route::get('create', 'create')->name('profiles.create');
+        Route::post('store', 'store')->name('profiles.store');
+        Route::get('show/{id}', 'show')->name('profiles.show');
+        Route::get('edit/{id}', 'edit')->name('profiles.edit');
+        Route::put('edit/{id}', 'update')->name('profiles.update');
+        Route::delete('destroy/{id}', 'destroy')->name('profiles.destroy');
+    });
+
 });

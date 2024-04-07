@@ -25,9 +25,15 @@
     </li>
     
     <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin-profile') }}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Admin Profile</span></a>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link" href="{{ route('profile') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Profile</span></a>
+        <span>Profile Creation</span></a>
     </li>
     
     <!-- Divider -->
