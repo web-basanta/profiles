@@ -29,9 +29,9 @@
                 @foreach($profile as $rs)
                     <tr>
                         <td class="align-middle">{{ $loop->iteration }}</td>
-                        <td class="align-middle">{{ $rs-name }}</td>
+                        <td class="align-middle">{{ $rs->name }}</td>
                         <td class="align-middle">{{ $rs->address }}</td>
-                        <td class="align-middle">{{ $rs->phone-one }}</td>
+                        <td class="align-middle">{{ $rs->email }}</td>
                         <td class="align-middle">{{ $rs->education  }}</td>  
                         <td class="align-middle">
                             <div class="btn-group" role="group" aria-label="Basic example">
