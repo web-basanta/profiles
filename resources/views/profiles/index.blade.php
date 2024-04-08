@@ -13,7 +13,7 @@
             {{ Session::get('success') }}
         </div>
     @endif
-    <table class="table table-hover">
+    <table class="table table-striped table-bordered">
         <thead class="table-primary">
             <tr>
                 <th>#</th>
@@ -28,7 +28,7 @@
             @if($profile->count() > 0)
                 @foreach($profile as $rs)
                     <tr>
-                        <td class="align-middle">{{ $loop->iteration }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td class="align-middle">{{ $rs->name }}</td>
                         <td class="align-middle">{{ $rs->address }}</td>
                         <td class="align-middle">{{ $rs->email }}</td>
