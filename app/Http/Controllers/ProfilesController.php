@@ -17,7 +17,7 @@ class ProfilesController extends Controller
     public function index()
     {
         //
-        $profile = Profiles::all();
+        $profile = Profiles::orderBy('created_at', 'desc')->get();
         return view('profiles.index', compact('profile'));
     }
 
@@ -69,19 +69,41 @@ class ProfilesController extends Controller
             'p-one' => 'required|min:11|numeric',
         ])->validate();
 
-        $name_var = "['f-name'=>".$validatedData['f-name'].", 'm-name' =>". $request['m-name'].", 'l-name' =>". $validatedData['l-name']."]";
-        $email_var = "['p-email' =>". $validatedData['p-email'].", 's-email' =>". $request['s-email']."]";
+        $nameData = [
+            'f-name' => $validatedData['f-name'],
+            'm-name' => $request['m-name'],
+            'l-name' => $validatedData['l-name']
+            // Add more key-value pairs as needed
+        ];
+        
+        // Encode the array into JSON format
+        $nameData = json_encode($nameData);
+        
+        //email data
+        $emailData = [
+            'p-email' => $validatedData['p-email'],
+            's-email' => $request['s-email']
+            // Add more key-value pairs as needed
+        ];
+
+        $emailData = json_encode($emailData);
+
+        $addressData = [
+            'p-address' => $validatedData['p-address'],
+            's-address' => $request['s-address']
+        ];
+
+        $addressData = json_encode($addressData);
 
         // Create new instance of the model and fill it with validated data
         $profiles = Profiles::create([
-            'name' => $name_var, // Adjust field name as needed
+            'name' => $nameData, // Adjust field name as needed
             'phone_one' => $validatedData['p-one'], // Adjust field name as needed
-            'phone_two' => ($request['s-two'] == Null ?0:$request['s-two']), // Adjust field name as needed
-            'address' => $validatedData['p-address'], // Adjust field name as needed
-            // Add more fields as needed
+            'phone_two' => ($request['s-two'] == null ?0:$request['s-two']), // Adjust field name as needed
+            'address' => $addressData, // Adjust field name as needed
             'gender' => $validatedData['gender'],
             'links' => $request['links'],
-            'email' => $email_var,
+            'email' => $emailData,
             'basicinfo' => $request['basicinfo'],
             'workExp' => $request['workExp'],
             'education' => $request['education'],

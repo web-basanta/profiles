@@ -16,23 +16,45 @@
     <table class="table table-striped table-bordered">
         <thead class="table-primary">
             <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>profile Code</th>
-                <th>Description</th>
+                <th>S. No</th>
+                <th>Full Name</th>
+                <th>Address</th>
+                <th>Emails</th>
+                <th>Some Info</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>+
             @if($profile->count() > 0)
+          
                 @foreach($profile as $rs)
-                    <tr>
+                    <tr>                
                         <td>{{ $loop->iteration }}</td>
-                        <td class="align-middle">{{ $rs->name }}</td>
-                        <td class="align-middle">{{ $rs->address }}</td>
-                        <td class="align-middle">{{ $rs->email }}</td>
-                        <td class="align-middle">{{ $rs->education  }}</td>  
+                        <td class="align-middle">
+                            @foreach (json_decode($rs->name, true) as $i=> $name)
+                                @if($name != '' && $i == 'f-name' || $i == 'm-name' || $i == 'l-name')
+                                    {{ $name }}
+                                @endif
+                            @endforeach
+                        </td>
+                        <td class="align-middle">
+                            @foreach (json_decode($rs->address, true) as $i => $address)
+                                @if($address != '' && $i == 'p-address' || $i == 's-address')
+                                    {{ $address }},
+                                @endif
+                            @endforeach
+                        </td>
+                        <td class="align-middle">
+                            @foreach (json_decode($rs->email, true) as $i => $email)
+                                @if($email != '' && $i == 'p-email')
+                                    {{ 'Primary Email:'}}{{ $email }}<br>,
+                                @endif
+                                @if($email != '' && $i == 's-email')
+                                    {{ 'Secondary Email:'}}{{ $email }},
+                                @endif
+                            @endforeach
+                        </td>
+                        <td class="align-middle"> {!! $rs->education !!}</td>  
                         <td class="align-middle">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a href="{{ route('profiles.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
