@@ -51,13 +51,19 @@
                         @endif
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="s-two" class="form-control" placeholder="Secondary Mobile">
+                        <input type="text" name="s-two" class="form-control @error('s-one')is-invalid @enderror" placeholder="Secondary Mobile">
+                        @if ($errors->has('s-one'))
+                            <span class="invalid-feedback">{{ $errors->first('s-one') }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="" class="card text-center p-2"><i class="fas fa-graduation-cap"></i></label>
                     <div class="col-md-4">
-                        <input type="text" name="last-education" class="form-control" placeholder="Education">
+                        <input type="text" name="last-education" class="form-control @error('last-education')is-invalid @enderror" placeholder="Education">
+                        @if ($errors->has('last-education'))
+                            <span class="invalid-feedback">{{ $errors->first('last-education') }}</span>
+                        @endif
                     </div>
                     <label for="" class="card text-center p-2"><i class="fas fa-globe"></i></label>
                     <div class="col-md-4">
@@ -77,7 +83,10 @@
                 <div class="row mb-3">
                     <label for="" class="card text-center p-2 h-25"><i class="fa fa-map-marker fa-fw"></i></label>
                     <div class="col-md-4">
-                        <textarea name="p-address" class="form-control" placeholder="Primary Address"></textarea>
+                        <textarea name="p-address" class="form-control @error('p-address')is-invalid @enderror" placeholder="Primary Address"></textarea>
+                        @if ($errors->has('p-address'))
+                            <span class="invalid-feedback">{{ $errors->first('p-address') }}</span>
+                        @endif
                     </div>
                     <div class="col-md-4">
                         <textarea name="s-address" class="form-control" placeholder="Secondary Address"></textarea>

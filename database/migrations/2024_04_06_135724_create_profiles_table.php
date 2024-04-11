@@ -15,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->longText('name');
-            $table->string('phone_one');
-            $table->string('phone_two');
-            $table->longText('address');
-            $table->string('gender');
-            $table->text('links');
-            $table->string('email');
-            $table->text('basicinfo');
-            $table->longText('workExp');
-            $table->longText('education');
-            $table->longText('skills');
-            $table->longText('interests');
-            $table->longText('otherinfo');
+            $table->longText('name')->nullable()->default(null);
+            $table->string('phone_one')->nullable()->default(null);
+            $table->string('phone_two')->nullable()->default(null);
+            $table->longText('address')->nullable()->default(null);
+            $table->string('gender')->nullable()->default(null);
+            $table->text('links')->nullable()->default(null);
+            $table->string('email')->nullable()->default(null);
+            $table->text('basicinfo')->nullable()->default(null);
+            $table->longText('workExp')->nullable()->default(null);
+            $table->longText('education')->nullable()->default(null);
+            $table->longText('skills')->nullable()->default(null);
+            $table->longText('interests')->nullable()->default(null);
+            $table->longText('otherinfo')->nullable()->default(null);
             $table->timestamps();
         });
     }
