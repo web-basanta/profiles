@@ -5,7 +5,7 @@
 @section('contents')
     <h5 class="mb-0">Detail Product</h5>
     <hr />
-    <div class="row">
+    {{-- <div class="row">
         <div class="col mb-3">
             <label class="form-label">Title</label>
             <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $product->title }}" readonly>
@@ -34,5 +34,5 @@
             <label class="form-label">Updated At</label>
             <input type="text" name="updated_at" class="form-control" placeholder="Updated At" value="{{ $product->updated_at }}" readonly>
         </div>
-    </div>
+    </div> --}}
 @endsection

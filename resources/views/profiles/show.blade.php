@@ -3,7 +3,7 @@
 @section('title', 'Show Profile')
   
 @section('contents')
-    <h1 class="mb-0">Detail Profile</h1>
+    <h5 class="mb-0">Detail Profile</h5>
     <hr />
     <div class="row">
 
@@ -11,7 +11,7 @@
             @if($profile->count() > 0)
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th colspan="4">Name <label for="" class="p-2"><i class="fa fa-user fa-fw"></i></label></th>
                 </tr>
             </thead>
             <tbody>
@@ -28,10 +28,10 @@
             </tbody>
             <thead>
                 <tr>
-                    <th>Primary Email</th>
-                    <th>Secondary Email</th>
-                    <th> Primary Mobile </th>
-                    <th> Secondary Mobile </th>
+                    <th>Primary Email <i class="fa fa-envelope fa-fw"></i></th>
+                    <th>Secondary Email <i class="fa fa-envelope fa-fw"></i></th>
+                    <th> Primary Mobile <i class="fa fa-phone fa-fw"></i></th>
+                    <th> Secondary Mobile <i class="fa fa-phone fa-fw"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -61,10 +61,10 @@
             </tbody>
             <thead>
                 <tr>
-                    <th> Education </th>
-                    <th> Country </th>
-                    <th> Job Name </th>
-                    <th> Company Name </th>
+                    <th> Education <i class="fas fa-graduation-cap"></i></th>
+                    <th> Country <i class="fas fa-globe"></i></th>
+                    <th> Job Name <i class="fas fa-briefcase"></i></th>
+                    <th> Company Name <i class="far fa-building"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -99,10 +99,10 @@
             </tbody>
             <thead>
                 <tr>
-                    <th> Primary Address </th>
-                    <th> Secondary Address </th>
-                    <th> Gender </th>
-                    <th> Link List </th>
+                    <th> Primary Address <i class="fa fa-map-marker fa-fw"></i></th>
+                    <th> Secondary Address <i class="fa fa-map-marker fa-fw"></i></th>
+                    <th> Gender <i class="far fa-building"></i></th>
+                    <th> Link List <i class="fa fa-external-link fa-fw"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -133,9 +133,9 @@
             </tbody>
             <thead>
                 <tr>
-                    <th> ACHIEVE WORKING AND KNOWLEDGE </th>
-                    <th> WORK EXPERIENCE </th>
-                    <th> EDUCATION & QUALIFICATIONS </th>
+                    <th> ACHIEVE WORKING AND KNOWLEDGE <i class="fa fa-map-marker fa-fw"></i></th>
+                    <th> WORK EXPERIENCE <i class="fa fa-th-list fa-fw"></i></th>
+                    <th> EDUCATION & QUALIFICATIONS <i class="fa fa-th-list fa-fw"></i></th>
                 </tr>
             </thead>
             <tbody>

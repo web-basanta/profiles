@@ -22,7 +22,10 @@
   
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h4 class="h4 mb-0 text-gray-800">@yield('title')</h4>
+            <h5 class="h5 mb-0 text-gray-800">@yield('title')</h5>
+            @if(Request::url() !== route('profile'))
+            <a href="{{ route('profile') }}" type="button" class="btn btn-secondary">Back</a>
+            @endif
           </div>
   
           @yield('contents')

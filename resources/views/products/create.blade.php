@@ -3,7 +3,7 @@
 @section('title', 'Create Product')
   
 @section('contents')
-    <h1 class="mb-0">Add Product</h1>
+    <h5 class="mb-0">Add Product</h5>
     <hr />
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf

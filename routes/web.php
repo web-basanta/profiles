@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
@@ -45,7 +46,9 @@ Route::controller(AuthController::class)->group(function () {
   
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
-        return view('dashboard');
+        $productController = new ProductController(); // Create an instance of the ProductController
+        $countProduct = $productController->getProductCount(); // Call the method to get the count of products
+        return view('dashboard', compact('countProduct'));
     })->name('dashboard');
  
     Route::controller(ProductController::class)->prefix('products')->group(function () {
@@ -68,6 +71,24 @@ Route::middleware('auth')->group(function () {
         Route::get('edit/{id}', 'edit')->name('profiles.edit');
         Route::put('edit/{id}', 'update')->name('profiles.update');
         Route::delete('destroy/{id}', 'destroy')->name('profiles.destroy');
+       
     });
+
+    Route::controller(ApiController::class)->prefix('profile.api')->group(function () {
+        Route::get('', 'index')->name('profile/api');
+        // Route::get('create', 'create')->name('profiles.create');
+        // Route::post('store', 'store')->name('profiles.store');
+        // Route::get('show/{id}', 'show')->name('profiles.show');
+        // Route::get('edit/{id}', 'edit')->name('profiles.edit');
+        // Route::put('edit/{id}', 'update')->name('profiles.update');
+        // Route::delete('destroy/{id}', 'destroy')->name('profiles.destroy');
+       
+    });
+    
+    
+    // Route::get('profile-apis', function () {
+    //     return view('api.proApis');
+    // });
+    
 
 });

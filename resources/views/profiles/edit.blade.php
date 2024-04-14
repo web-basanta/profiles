@@ -3,7 +3,7 @@
 @section('title', 'Edit Product')
   
 @section('contents')
-    <h1 class="mb-0">Edit Product</h1>
+    <h5 class="mb-0">Edit Product</h5>
     <hr />
     <form action="{{ route('profiles.update', $profile->id) }}" method="POST">
         @csrf
@@ -103,9 +103,9 @@
             <thead>
                 <tr>
                     <th> Education <i class="fas fa-graduation-cap"></i></th>
-                    <th> Country </th>
-                    <th> Job Name </th>
-                    <th> Company Name </th>
+                    <th> Country <i class="fas fa-globe"></i></th>
+                    <th> Job Name <i class="fas fa-briefcase"></i></th>
+                    <th> Company Name <i class="far fa-building"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -150,10 +150,10 @@
             </tbody>
             <thead>
                 <tr>
-                    <th> Primary Address </th>
-                    <th> Secondary Address </th>
-                    <th> Gender </th>
-                    <th> Link List </th>
+                    <th> Primary Address <i class="fa fa-map-marker fa-fw"></i></th>
+                    <th> Secondary Address <i class="fa fa-map-marker fa-fw"></i></th>
+                    <th> Gender <i class="far fa-building"></i></th>
+                    <th> Link List <i class="fa fa-external-link fa-fw"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -187,9 +187,9 @@
             </tbody>
             <thead>
                 <tr>
-                    <th> ACHIEVE WORKING AND KNOWLEDGE </th>
-                    <th> WORK EXPERIENCE </th>
-                    <th> EDUCATION & QUALIFICATIONS </th>
+                    <th> ACHIEVE WORKING AND KNOWLEDGE <i class="fa fa-map-marker fa-fw"></i></th>
+                    <th> WORK EXPERIENCE <i class="fa fa-th-list fa-fw"></i></th>
+                    <th> EDUCATION & QUALIFICATIONS <i class="fa fa-th-list fa-fw"></i></th>
                 </tr>
             </thead>
             <tbody>

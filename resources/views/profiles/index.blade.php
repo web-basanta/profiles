@@ -4,7 +4,7 @@
   
 @section('contents')
     <div class="d-flex align-items-center justify-content-between">
-        <h1 class="mb-0">List profile</h1>
+        <h5 class="mb-0">List profile</h5>
         <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add profile</a>
     </div>
     <hr />

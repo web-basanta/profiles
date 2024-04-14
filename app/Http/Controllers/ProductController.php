@@ -78,4 +78,12 @@ class ProductController extends Controller
   
         return redirect()->route('products')->with('success', 'product deleted successfully');
     }
+
+    /**
+     * 
+    */
+    public function getProductCount(){
+        $count = Product::count();
+        return $count;
+    }
 }
