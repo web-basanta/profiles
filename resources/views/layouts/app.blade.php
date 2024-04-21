@@ -23,7 +23,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h5 class="h5 mb-0 text-gray-800">@yield('title')</h5>
-            @if(Request::url() !== route('profile'))
+            @if(Request::url() !== route('profile') && Request::url() !== route('dashboard') && Request::url() !== route('profile/api'))
             <a href="{{ route('profile') }}" type="button" class="btn btn-secondary">Back</a>
             @endif
           </div>

@@ -74,7 +74,7 @@ Route::middleware('auth')->group(function () {
        
     });
 
-    Route::controller(ApiController::class)->prefix('profile.api')->group(function () {
+    Route::controller(ApiController::class)->prefix('profile/api')->group(function () {
         Route::get('', 'index')->name('profile/api');
         // Route::get('create', 'create')->name('profiles.create');
         // Route::post('store', 'store')->name('profiles.store');
