@@ -247,7 +247,7 @@ class ProfilesController extends Controller
 
         if($profile){
   
-            return redirect()->route('profile')->with('success', 'product updated successfully');
+            return redirect()->route('profile')->with('success', 'profile updated successfully');
         }
     }
 
@@ -257,8 +257,13 @@ class ProfilesController extends Controller
      * @param  \App\Models\Profiles  $profiles
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profiles $profiles)
+    public function destroy(Request $request, string $id)
     {
         //
+        $profile = Profiles::findOrFail($id);
+  
+        $profile->delete();
+  
+        return redirect()->route('profile')->with('success', 'profile deleted successfully');
     }
 }
