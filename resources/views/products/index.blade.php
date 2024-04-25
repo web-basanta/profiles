@@ -1,56 +1,56 @@
 @extends('layouts.app')
-  
-@section('title', 'Home Product')
-  
-@section('contents')
-    <div class="d-flex align-items-center justify-content-between">
-        <h5 class="mb-0">List Product</h5>
-        <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
-    </div>
-    <hr />
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-    <table class="table table-hover">
-        <thead class="table-primary">
-            <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Product Code</th>
-                <th>Description</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>+
-            @if($product->count() > 0)
-                @foreach($product as $rs)
-                    <tr>
-                        <td class="align-middle">{{ $loop->iteration }}</td>
-                        <td class="align-middle">{{ $rs->title }}</td>
-                        <td class="align-middle">{{ $rs->price }}</td>
-                        <td class="align-middle">{{ $rs->product_code }}</td>
-                        <td class="align-middle">{{ $rs->description }}</td>  
-                        <td class="align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
-                                <a href="{{ route('products.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('products.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger m-0">Delete</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
+
+@section('content')
+<div class="card">
+    <div class="card-header">Product List</div>
+    <div class="card-body">
+        @can('create-product')
+            <a href="{{ route('products.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New Product</a>
+        @endcan
+        <table class="table table-striped table-bordered">
+            <thead>
                 <tr>
-                    <td class="text-center" colspan="5">Product not found</td>
+                <th scope="col">S#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
                 </tr>
-            @endif
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($products as $product)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->description }}</td>
+                    <td>
+                        <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+
+                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
+
+                            @can('edit-product')
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                            @endcan
+
+                            @can('delete-product')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this product?');"><i class="bi bi-trash"></i> Delete</button>
+                            @endcan
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                    <td colspan="4">
+                        <span class="text-danger">
+                            <strong>No Product Found!</strong>
+                        </span>
+                    </td>
+                @endforelse
+            </tbody>
+        </table>
+
+        {{ $products->links() }}
+
+    </div>
+</div>
 @endsection

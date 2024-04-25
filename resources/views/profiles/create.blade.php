@@ -1,155 +1,51 @@
 @extends('layouts.app')
-  
-@section('title', 'Create profile')
-  
-@section('contents')
-    <span class="mb-0">Add profile</span>
-    <hr />
-    <form action="{{ route('profiles.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+
+@section('content')
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
         <div class="card">
-            <div class="card-head">
-                <h4 class="text-center pt-2">Basic Details</h4>
+            <div class="card-header">
+                <div class="float-start">
+                    Add New profile
+                </div>
+                <div class="float-end">
+                    <a href="{{ route('profiles.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
+                </div>
             </div>
             <div class="card-body">
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2"><i class="fa fa-user fa-fw"></i></label>
-                    <div class="col-md-3">
-                        <input type="text" name="f-name" class="form-control @error('f-name')is-invalid @enderror" placeholder="Frist Name">
-                        @if ($errors->has('f-name'))
-                            <span class="invalid-feedback">{{ $errors->first('f-name') }}</span>
-                        @endif
+                <form action="{{ route('profiles.store') }}" method="post">
+                    @csrf
+
+                    <div class="mb-3 row">
+                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+                            @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <input type="text" name="m-name" class="form-control" placeholder="Middle Name">
+
+                    <div class="mb-3 row">
+                        <label for="description" class="col-md-4 col-form-label text-md-end text-start">Description</label>
+                        <div class="col-md-6">
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
+                            @if ($errors->has('description'))
+                                <span class="text-danger">{{ $errors->first('description') }}</span>
+                            @endif
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <input type="text" name="l-name" class="form-control @error('l-name')is-invalid @enderror" placeholder="Last Name">
-                        @if ($errors->has('l-name'))
-                            <span class="invalid-feedback">{{ $errors->first('l-name') }}</span>
-                        @endif
+                    
+                    <div class="mb-3 row">
+                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add profile">
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2"><i class="fa fa-envelope fa-fw"></i></label>
-                    <div class="col-md-4">
-                        <input type="text" name="p-email" class="form-control  @error('p-email')is-invalid @enderror" placeholder="Primary Email ">
-                        @if ($errors->has('p-email'))
-                            <span class="invalid-feedback">{{ $errors->first('p-email') }}</span>
-                        @endif
-                    </div>
-                    <div class="col-md-4">
-                        <input type="text" name="s-email" class="form-control" placeholder="Secondary Email">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2"><i class="fa fa-phone fa-fw"></i></label>
-                    <div class="col-md-4">
-                        <input type="text" name="p-one" class="form-control  @error('p-one')is-invalid @enderror" placeholder="Primary Mobile ">
-                        @if ($errors->has('p-one'))
-                            <span class="invalid-feedback">{{ $errors->first('p-one') }}</span>
-                        @endif
-                    </div>
-                    <div class="col-md-4">
-                        <input type="text" name="s-two" class="form-control @error('s-one')is-invalid @enderror" placeholder="Secondary Mobile">
-                        @if ($errors->has('s-one'))
-                            <span class="invalid-feedback">{{ $errors->first('s-one') }}</span>
-                        @endif
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2"><i class="fas fa-graduation-cap"></i></label>
-                    <div class="col-md-4">
-                        <input type="text" name="last-education" class="form-control @error('last-education')is-invalid @enderror" placeholder="Education">
-                        @if ($errors->has('last-education'))
-                            <span class="invalid-feedback">{{ $errors->first('last-education') }}</span>
-                        @endif
-                    </div>
-                    <label for="" class="card text-center p-2"><i class="fas fa-globe"></i></label>
-                    <div class="col-md-4">
-                        <input type="text" name="country" class="form-control" placeholder="Enter Your Country Name">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2"><i class="fas fa-briefcase"></i></label>
-                    <div class="col-md-4">
-                        <input type="text" name="job-name" class="form-control" placeholder="Job Name">
-                    </div>
-                    <label for="" class="card text-center p-2"><i class="far fa-building"></i></label>
-                    <div class="col-md-4">
-                        <input type="text" name="company-name" class="form-control" placeholder="Company Name">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2 h-25"><i class="fa fa-map-marker fa-fw"></i></label>
-                    <div class="col-md-4">
-                        <textarea name="p-address" class="form-control @error('p-address')is-invalid @enderror" placeholder="Primary Address"></textarea>
-                        @if ($errors->has('p-address'))
-                            <span class="invalid-feedback">{{ $errors->first('p-address') }}</span>
-                        @endif
-                    </div>
-                    <div class="col-md-4">
-                        <textarea name="s-address" class="form-control" placeholder="Secondary Address"></textarea>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2 h-25"><i class="fa fa-intersex fa-fw"></i></label>
-                    <div class="col-md-4">
-                        <select name="gender" class="custom-select" multiple>
-                            <option value="f">Female</option>
-                            <option value="m" selected>Male</option>
-                            <option value="o">Others</option>
-                        </select>
-                    </div>
-                    <label for="" class="card text-center p-2 h-25"><i class="fa fa-external-link fa-fw"></i></label>
-                    <div class="col-md-4">
-                        <textarea class="form-control" name="links" placeholder="links"></textarea>
-                    </div>
-                </div>
+                    
+                </form>
             </div>
         </div>
-        
-        <div class="card">
-            <div class="card-head">
-                <h4 class="text-center pt-2">ACHIEVE WORKING AND KNOWLEDGE</h4>
-            </div>
-            <div class="card-body">
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2 h-25"><i class="fa fa-th-list fa-fw"></i></label>
-                    <div class="col-md-8">
-                        <textarea name="basicinfo" id="editor" cols="30" rows="10" class="form-control"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="card-head">
-                <h4 class="text-center pt-2">WORK EXPERIENCE</h4>
-            </div>
-            <div class="card-body">
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2 h-25"><i class="fa fa-th-list fa-fw"></i></label>
-                    <div class="col-md-8">
-                        <textarea name="workExp" id="editor-two" cols="30" rows="10" class="form-control"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="card-head">
-                <h4 class="text-center pt-2">EDUCATION & QUALIFICATIONS</h4>
-            </div>
-            <div class="card-body">
-                <div class="row mb-3">
-                    <label for="" class="card text-center p-2 h-25"><i class="fa fa-th-list fa-fw"></i></label>
-                    <div class="col-md-8">
-                        <textarea name="education" id="editor-three" cols="30" rows="10" class="form-control"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="row mb-3">
-                    <div class="d-grid text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    </div>    
+</div>
+    
 @endsection

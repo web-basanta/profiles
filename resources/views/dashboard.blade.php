@@ -34,11 +34,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="nav-link" href="{{ route('products') }}">
+                      {{-- <a class="nav-link" href="{{ route('products') }}">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Product</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}%</div>
-                      </a>
+                      </a> --}}
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-cubes fa-2x text-gray-300"></i>

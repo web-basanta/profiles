@@ -1,57 +1,35 @@
-@include('layouts.link.header')
-<body id="page-top">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-  
-    <!-- Sidebar -->
-    @include('layouts.sidebar')
-    <!-- End of Sidebar -->
-  
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-  
-      <!-- Main Content -->
-      <div id="content">
-  
-        <!-- Topbar -->
-        @include('layouts.navbar')
-        <!-- End of Topbar -->
-  
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-  
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h5 class="h5 mb-0 text-gray-800">@yield('title')</h5>
-            @if(Request::url() !== route('profile') && Request::url() !== route('dashboard') && Request::url() !== route('profile/api'))
-            <a href="{{ route('profile') }}" type="button" class="btn btn-secondary">Back</a>
+
+@include('layouts.header')
+<body>
+    <div id="app">
+        <div id="wrapper">
+            @include('layouts.sidebar')
+
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success text-center" role="alert">
+                    {{ $message }}
+                </div>
             @endif
-          </div>
-  
-          @yield('contents')
-  
-          <!-- Content Row -->
-  
-  
+            <div id="content-wrapper" class="d-flex flex-column">
+                        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            @include('layouts.nav')
+                @yield('content')
+                <!-- Footer -->
+                           
+            </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Your Website 2024</span>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <!-- /.container-fluid -->
-  
-      </div>
-      <!-- End of Main Content -->
-  
-      <!-- Footer -->
-      @include('layouts.footer')
-      <!-- End of Footer -->
-  
+
+        <!-- End of Footer --> 
     </div>
-    <!-- End of Content Wrapper -->
-  
-  </div>
-  <!-- End of Page Wrapper -->
-  
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-</body> 
-@include('layouts.link.footer')
+</body>
+@include('layouts.footer')

@@ -1,78 +1,56 @@
 @extends('layouts.app')
-  
-@section('title', 'Home profile')
-  
-@section('contents')
-    <div class="d-flex align-items-center justify-content-between">
-        <h5 class="mb-0">List profile</h5>
-        <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add profile</a>
-    </div>
-    <hr />
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-    <table class="table table-striped table-bordered">
-        <thead class="table-primary">
-            <tr>
-                <th>S. No</th>
-                <th>Full Name</th>
-                <th>Address</th>
-                <th>Emails</th>
-                <th>Some Info</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>+
-            @if($profile->count() > 0)
-          
-                @foreach($profile as $rs)
-                    <tr>                
-                        <td>{{ $loop->iteration }}</td>
-                        <td class="align-middle">
-                            @foreach (json_decode($rs->name, true) as $i=> $name)
-                                @if($name != '' && $i == 'f-name' || $i == 'm-name' || $i == 'l-name')
-                                    {{ $name }}
-                                @endif
-                            @endforeach
-                        </td>
-                        <td class="align-middle">
-                            @foreach (json_decode($rs->address, true) as $i => $address)
-                                @if($address != '' && $i == 'p-address' || $i == 's-address')
-                                    {{ $address }},
-                                @endif
-                            @endforeach
-                        </td>
-                        <td class="align-middle">
-                            @foreach (json_decode($rs->email, true) as $i => $email)
-                                @if($email != '' && $i == 'p-email')
-                                    {{ 'Primary Email:'}}{{ $email }}<br>,
-                                @endif
-                                @if($email != '' && $i == 's-email')
-                                    {{ 'Secondary Email:'}}{{ $email }},
-                                @endif
-                            @endforeach
-                        </td>
-                        <td class="align-middle"> {!! $rs->education !!}</td>  
-                        <td class="align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="{{ route('profiles.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
-                                <a href="{{ route('profiles.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('profiles.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger m-0">Delete</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
+
+@section('content')
+<div class="card">
+    <div class="card-header">Profile List</div>
+    <div class="card-body">
+        @can('create-profile')
+            <a href="{{ route('profiles.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New profile</a>
+        @endcan
+        <table class="table table-striped table-bordered">
+            <thead>
                 <tr>
-                    <td class="text-center" colspan="5">profile not found</td>
+                <th scope="col">S#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
                 </tr>
-            @endif
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($profiles as $profile)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $profile->name }}</td>
+                    <td>{{ $profile->description }}</td>
+                    <td>
+                        <form action="{{ route('profiles.destroy', $profile->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+
+                            <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
+
+                            @can('edit-profile')
+                                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                            @endcan
+
+                            @can('delete-profile')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this profile?');"><i class="bi bi-trash"></i> Delete</button>
+                            @endcan
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                    <td colspan="4">
+                        <span class="text-danger">
+                            <strong>No profile Found!</strong>
+                        </span>
+                    </td>
+                @endforelse
+            </tbody>
+        </table>
+
+        {{ $profiles->links() }}
+
+    </div>
+</div>
 @endsection
