@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,3 +95,18 @@ Route::middleware('auth')->group(function () {
     
 
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+Route::resources([
+    'roles' => RoleController::class,
+    'users' => UserController::class,
+    'products' => ProductController::class,
+    'profiles' => ProfilesController::class,
+]);

@@ -1,37 +1,52 @@
 @extends('layouts.app')
-  
-@section('title', 'Edit Product')
-  
-@section('contents')
-    <h5 class="mb-0">Edit Product</h5>
-    <hr />
-    <form action="{{ route('products.update', $product->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="row">
-            <div class="col mb-3">
-                <label class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $product->title }}" >
+
+@section('content')
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="card">
+            <div class="card-header">
+                <div class="float-start">
+                    Edit Product
+                </div>
+                <div class="float-end">
+                    <a href="{{ route('products.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
+                </div>
             </div>
-            <div class="col mb-3">
-                <label class="form-label">Price</label>
-                <input type="text" name="price" class="form-control" placeholder="Price" value="{{ $product->price }}" >
+            <div class="card-body">
+                <form action="{{ route('products.update', $product->id) }}" method="post">
+                    @csrf
+                    @method("PUT")
+
+                    <div class="mb-3 row">
+                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $product->name }}">
+                            @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="description" class="col-md-4 col-form-label text-md-end text-start">Description</label>
+                        <div class="col-md-6">
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ $product->description }}</textarea>
+                            @if ($errors->has('description'))
+                                <span class="text-danger">{{ $errors->first('description') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3 row">
+                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update">
+                    </div>
+                    
+                </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col mb-3">
-                <label class="form-label">Product Code</label>
-                <input type="text" name="product_code" class="form-control" placeholder="Product Code" value="{{ $product->product_code }}" >
-            </div>
-            <div class="col mb-3">
-                <label class="form-label">Description</label>
-                <textarea class="form-control" name="description" placeholder="Descriptoin" >{{ $product->description }}</textarea>
-            </div>
-        </div>
-        <div class="row">
-            <div class="d-grid">
-                <button class="btn btn-warning">Update</button>
-            </div>
-        </div>
-    </form>
+    </div>    
+</div>
+    
 @endsection
