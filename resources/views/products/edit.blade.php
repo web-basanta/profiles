@@ -19,12 +19,41 @@
                     @csrf
                     @method("PUT")
 
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
                         <div class="col-md-6">
                           <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $product->name }}">
                             @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+                    </div> --}}
+                    <div class="mb-3 row">
+                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">Product title</label>
+                        <div class="col-md-6">
+                          <input type="text" placeholder="Product Name" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ $product->title }}">
+                            @if ($errors->has('title'))
+                                <span class="text-danger">{{ $errors->first('title') }}</span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">Price</label>
+                        <div class="col-md-6">
+                            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Price" value="{{ $product->price }}">
+                            @if ($errors->has('price'))
+                                <span class="text-danger">{{ $errors->first('price') }}</span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">P Code</label>
+                        <div class="col-md-6">
+                            <input type="text" name="product_code" class="form-control @error('product_code') is-invalid @enderror" placeholder="Product Code" value="{{ $product->product_code }}">
+                            @if ($errors->has('product_code'))
+                                <span class="text-danger">{{ $errors->first('product_code') }}</span>
                             @endif
                         </div>
                     </div>

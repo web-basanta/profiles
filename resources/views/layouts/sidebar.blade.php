@@ -56,17 +56,20 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Profile</span>
             </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <h6 class="collapse-header">Profiles:</h6>
+                    @guest
+                    @else
+                        @canany(['create-profile', 'edit-profile', 'delete-profile'])
+                            <a class="collapse-item" href="{{ route('profile.index') }}">Profile Creation</a>
+                            <a class="collapse-item" href="{{ route('profile/api')}}">Profiles API's</a>
+                        @endcanany
+                    @endguest
                 </div>
             </div>
         </li>
