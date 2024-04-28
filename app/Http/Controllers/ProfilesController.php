@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+
 
 class ProfilesController extends Controller
 {
@@ -15,11 +20,22 @@ class ProfilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct()
+    {
+       $this->middleware('auth');
+       $this->middleware('permission:create-profile|edit-profile|delete-profile', ['only' => ['index','show']]);
+       $this->middleware('permission:create-profile', ['only' => ['create','store']]);
+       $this->middleware('permission:edit-profile', ['only' => ['edit','update']]);
+       $this->middleware('permission:delete-profile', ['only' => ['destroy']]);
+    }
+    public function index(): View
     {
         //
-        $profile = Profiles::orderBy('created_at', 'desc')->get();
-        return view('profiles.index', compact('profile'));
+        // $profiles = Profiles::orderBy('created_at', 'desc')->get();
+        // return view('profiles.index', compact('profiles'));
+        return view('profiles.index', [
+            'profile' => Profiles::orderBy('created_at', 'desc')->paginate(3)
+        ]);
     }
 
     /**
@@ -39,7 +55,7 @@ class ProfilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         //
         $messages = [
@@ -123,7 +139,8 @@ class ProfilesController extends Controller
         ]);
 
         if($profiles){
-            return redirect()->route('profile')->with('success', 'New Profiles added successfully');
+            return redirect()->route('profile.index')
+            ->withSuccess('New Profiles added successfully');
         }
     }
 
@@ -247,7 +264,8 @@ class ProfilesController extends Controller
 
         if($profile){
   
-            return redirect()->route('profile')->with('success', 'profile updated successfully');
+            return redirect()->route('profile.index')
+            ->withSuccess('profile updated successfully');
         }
     }
 

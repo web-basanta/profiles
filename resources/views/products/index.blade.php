@@ -20,7 +20,7 @@
                 @forelse ($products as $product)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->title }}</td>
                     <td>{{ $product->description }}</td>
                     <td>
                         <form action="{{ route('products.destroy', $product->id) }}" method="post">

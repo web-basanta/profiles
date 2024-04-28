@@ -5,11 +5,11 @@
         <div id="wrapper">
             @include('layouts.sidebar')
 
-            @if ($message = Session::get('success'))
+            {{-- @if ($message = Session::get('success'))
                 <div class="alert alert-success text-center" role="alert">
                     {{ $message }}
                 </div>
-            @endif
+            @endif --}}
             <div id="content-wrapper" class="d-flex flex-column">
                         <!-- Main Content -->
         <div id="content">
