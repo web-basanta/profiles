@@ -67,7 +67,7 @@
                     @else
                         @canany(['create-profile', 'edit-profile', 'delete-profile'])
                             <a class="collapse-item" href="{{ route('profile.index') }}">Profile Creation</a>
-                            <a class="collapse-item" href="{{ route('profile/api')}}">Profiles API's</a>
+                            {{-- <a class="collapse-item" href="{{ route('profile/api')}}">Profiles API's</a> --}}
                         @endcanany
                     @endguest
                 </div>
