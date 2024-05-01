@@ -34,11 +34,15 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
+                     @canany(['create-product', 'edit-product', 'delete-product'])
                       <a class="nav-link" href="{{ route('products.index') }}">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Product</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}%</div>
                       </a>
+                      @else
+                      <a class="nav-link" href="#">#</a>
+                      @endcanany
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-cubes fa-2x text-gray-300"></i>
@@ -54,10 +58,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
+                        @canany(['create-profile', 'edit-profile', 'delete-profile'])
                       <a class="nav-link" href="{{ route('profile.index') }}">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Profile Creation
                         </div>
-                        <div class="row no-gutters align-items-center">
+                        <div class="no-gutters align-items-center">
                             <div class="col-auto">
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
                             </div>
@@ -68,6 +73,9 @@
                             </div>
                         </div>
                       </a>
+                      @else
+                      <a class="nav-link" href="#">#</a>
+                      @endcanany
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
