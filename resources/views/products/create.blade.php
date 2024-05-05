@@ -57,6 +57,7 @@
                             @endif
                         </div>
                     </div>
+                    <input type="hidden" value="{{auth()->user()->id}}" name="user_id">
                     
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add Product">

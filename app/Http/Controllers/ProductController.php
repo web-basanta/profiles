@@ -7,6 +7,8 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class ProductController extends Controller
 {
@@ -25,11 +27,17 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
-        return view('products.index', [
-            'products' => Product::latest()->paginate(3)
-        ]);
+        //echo Role::select("name")->where("id", Auth::id())->value('name');
+        if(Role::select("name")->where("id", Auth::id())->value('name') == 'Super Admin')
+            return view('products.index', [
+                'products' => Product::latest()->paginate(3)
+            ]);
+        else
+            return view('products.index', [
+                'products' => Product::where('user_id',Auth::id())->latest()->paginate(3)
+            ]);
     }
 
     /**
@@ -54,21 +62,29 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product): View
+    public function show(Product $product)
     {
-        return view('products.show', [
-            'product' => $product
-        ]);
+        // Check if the logged-in user has access to view this product
+        if ($product->user_id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
+            return view('products.show', compact('product'));
+        }else{
+        // If the logged-in user doesn't have access, you can redirect them to a different page
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product): View
+    public function edit(Product $product)
     {
-        return view('products.edit', [
-            'product' => $product
-        ]);
+        // Check if the logged-in user has access to view this product
+        if ($product->user_id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
+            return view('products.edit', compact('product'));
+        }else{
+        // If the logged-in user doesn't have access, you can redirect them to a different page
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
+        }
     }
 
     /**

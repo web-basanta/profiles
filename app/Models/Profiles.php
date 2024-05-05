@@ -23,5 +23,6 @@ class Profiles extends Model
         'skills',
         'interests',
         'otherinfo',
+        'user_id',
     ];
 }
