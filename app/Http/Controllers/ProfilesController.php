@@ -11,6 +11,8 @@ use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 
 class ProfilesController extends Controller
@@ -28,13 +30,18 @@ class ProfilesController extends Controller
        $this->middleware('permission:edit-profile', ['only' => ['edit','update']]);
        $this->middleware('permission:delete-profile', ['only' => ['destroy']]);
     }
-    public function index(): View
+    public function index()
     {
         //
         // $profiles = Profiles::orderBy('created_at', 'desc')->get();
         // return view('profiles.index', compact('profiles'));
+        if(Role::select("name")->where("id", Auth::id())->value('name') == 'Super Admin')
         return view('profiles.index', [
             'profile' => Profiles::orderBy('created_at', 'desc')->paginate(3)
+        ]);
+        else
+        return view('profiles.index', [
+            'profile' => Profiles::where('user_id',Auth::id())->orderBy('created_at', 'desc')->paginate(3)
         ]);
     }
 
@@ -136,6 +143,7 @@ class ProfilesController extends Controller
             'skills' => Null,
             'interests' => Null,
             'otherinfo' => $otherinfoData,
+            'user_id' => auth()->user()->id,
         ]);
 
         if($profiles){
@@ -155,7 +163,11 @@ class ProfilesController extends Controller
         //
         $profile = Profiles::findOrFail($id);
   
-        return view('profiles.show', compact('profile'));
+        if ($id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
+            return view('profiles.show', compact('profile'));
+        }else{
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
+        }
     }
 
     /**
@@ -168,8 +180,13 @@ class ProfilesController extends Controller
     {
         //
         $profile = Profiles::findOrFail($id);
+
+        if ($id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
+            return view('profiles.edit', compact('profile'));
+        }else{
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
+        }
   
-        return view('profiles.edit', compact('profile'));
     }
 
     /**
@@ -260,6 +277,7 @@ class ProfilesController extends Controller
             'skills' => Null,
             'interests' => Null,
             'otherinfo' => $otherinfoData,
+            'user_id' => auth()->user()->id,
         ]);
 
         if($profile){
