@@ -163,7 +163,7 @@ class ProfilesController extends Controller
         //
         $profile = Profiles::findOrFail($id);
   
-        if ($id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
+        if ($profile->user_id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
             return view('profiles.show', compact('profile'));
         }else{
             return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
@@ -181,7 +181,7 @@ class ProfilesController extends Controller
         //
         $profile = Profiles::findOrFail($id);
 
-        if ($id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
+        if ($profile->user_id == Auth::id() || Role::select("id")->where("id", "=", Auth::id())->value('id') == '1') {
             return view('profiles.edit', compact('profile'));
         }else{
             return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
