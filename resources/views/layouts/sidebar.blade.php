@@ -41,13 +41,13 @@
                      @guest
                     @else
                         @canany(['create-role', 'edit-role', 'delete-role'])
-                            <a class="nav-link collapse-item" href="{{ route('roles.index') }}">Manage Roles</a>
+                            <a class="collapse-item" href="{{ route('roles.index') }}">Manage Roles</a>
                         @endcanany
                         @canany(['create-user', 'edit-user', 'delete-user'])
-                            <a class="nav-link collapse-item" href="{{ route('users.index') }}">Manage Users</a>
+                            <a class="collapse-item" href="{{ route('users.index') }}">Manage Users</a>
                         @endcanany
                         @canany(['create-product', 'edit-product', 'delete-product'])
-                            <a class="nav-link collapse-item" href="{{ route('products.index') }}">Manage Products</a>
+                            <a class="collapse-item" href="{{ route('products.index') }}">Manage Products</a>
                         @endcanany
                         @endguest
                 </div>
@@ -76,11 +76,11 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGames" aria-expanded="false" aria-controls="collapseGames">
+                <i class="fas fa-fw fa-games"></i>
                 <span>Games</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+            <div id="collapseGames" class="collapse" aria-labelledby="headingGames" data-parent="#accordionSidebar" style="">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Games:</h6>
                     <a class="collapse-item" href="{{ route('games.index') }}">X/O games</a>
