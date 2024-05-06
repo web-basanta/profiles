@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tic Tac Toe Game | CodingNepal</title>
+@extends('layouts.app')
+  
+@section('title', 'Home profile')
+  
+@section('content')
+
     <link rel="stylesheet" href="{{ asset('admin_assets/css/games.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
+
 <body>
   <!-- select box -->
   <div class="select-box">
@@ -56,5 +57,4 @@
 
   <script src="{{ asset('admin_assets/js/games.js') }}"></script>
 
-</body>
-</html>
+  @endsection
