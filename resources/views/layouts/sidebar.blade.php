@@ -74,6 +74,27 @@
             </div>
         </li>
 
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Games</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Games:</h6>
+                    <a class="collapse-item" href="{{ route('games.index') }}">X/O games</a>
+                    <!-- @guest
+                    @else
+                        @canany(['create-profile', 'edit-profile', 'delete-profile'])
+                            <a class="collapse-item" href="{{ route('profile.index') }}">Profile Creation</a>
+                            {{-- <a class="collapse-item" href="{{ route('profile/api')}}">Profiles API's</a> --}}
+                        @endcanany
+                    @endguest -->
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -94,6 +115,7 @@
 
         <!-- Sidebar Message -->
         <div class="sidebar-card d-none d-lg-flex">
+            Message Comming Soon..
             {{-- <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
             <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
             <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a> --}}
