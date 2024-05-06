@@ -51,4 +51,5 @@ Route::resources([
     'users' => UserController::class,
     'products' => ProductController::class,
     'profile' => ProfilesController::class,
+    'games' => GameController::class,
 ]);
