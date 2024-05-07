@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class GameController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth');
+       $this->middleware('permission:create-product|edit-product|delete-product', ['only' => ['index','show']]);
+       $this->middleware('permission:create-product', ['only' => ['create','store']]);
+       $this->middleware('permission:edit-product', ['only' => ['edit','update']]);
+       $this->middleware('permission:delete-product', ['only' => ['destroy']]);
+    }
+    
     public function index()
     {
         // $games = Game::all();
