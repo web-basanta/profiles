@@ -51,6 +51,6 @@
     </div>
 </div>
 
-  <script src="{{ asset('admin_assets/js/games.js') }}"></script>
+  <script src="{{ asset('admin_assets/js/games-trat.js') }}"></script>
 
   @endsection
