@@ -52,5 +52,7 @@
 </div>
 
   <script src="{{ asset('admin_assets/js/games-trat.js') }}"></script>
+  <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script scr="https://cdnjs.cloudflare.com/ajax/libs/animatelo/1.0.3/animatelo.min.js"></script>
 
   @endsection
