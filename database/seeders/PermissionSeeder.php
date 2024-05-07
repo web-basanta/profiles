@@ -25,7 +25,10 @@ class PermissionSeeder extends Seeder
             'delete-product',
             'create-profile',
             'edit-profile',
-            'delete-profile'
+            'delete-profile',
+            'create-games',
+            'edit-games',
+            'delete-games'
          ];
  
           // Looping and Inserting Array's Permissions into Permission Table
