@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ asset('admin_assets/js/animatelo.min.js') }}"></script>
 <div class="container">
-    <div class="row">
+    <div class="card-body">
    <div id="outer-board">
   <div id="board"> 
     <div id="banner">
