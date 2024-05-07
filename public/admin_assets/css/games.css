@@ -235,7 +235,6 @@ body{
 
 .btn {
   display: block;
-  margin: auto;
   margin-top: 10px;
   background-color: #303a21;
   color: #c4d6a7;
@@ -331,9 +330,9 @@ body{
   position: absolute;
   background-color: #c4d6a7;
   border: 4px solid #303a21;
-  width: 14px;
-  height: 14px;
-  margin: 3px;
+  width: 18px;
+  height: 18px;
+  margin: 4px;
 }
 
 .inner-inner-tile {
@@ -341,5 +340,5 @@ body{
   background-color: #303a21;
   width: 8px;
   height: 8px;
-  margin: 3px;
+  margin: 1px;
 }
