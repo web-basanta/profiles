@@ -46,6 +46,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/ticktak', [GameController::class, 'ticktak'])->name('games.ticktak');
 
 Route::resources([
     'roles' => RoleController::class,
