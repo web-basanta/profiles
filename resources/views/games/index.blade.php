@@ -6,7 +6,9 @@
 
 <div class="container-fluid">
   <div class="row">
-    Dashboard
+    <div class="col-xl-3 col-md-3 mb-4">
+      <h5>Games List</h5>
+    </div>
   </div>
   <div class="row">
 
@@ -21,6 +23,17 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-3 col-md-3 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    
+                  <a href="{{ route('games.tetris') }}" class="btn btn-success p-1">Tetris</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
   </div>
 </div>

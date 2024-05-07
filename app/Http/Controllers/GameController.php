@@ -28,6 +28,11 @@ class GameController extends Controller
     {
         return view('games.ticktak');
     }
+
+    public function tetris()
+    {
+        return view('games.tetris');
+    }
     
 
     public function show($id)
