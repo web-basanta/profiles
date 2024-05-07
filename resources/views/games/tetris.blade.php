@@ -52,7 +52,7 @@
 </div>
 
   <script src="{{ asset('admin_assets/js/games-trat.js') }}"></script>
-  <script type="text/javascript" scr="{{ asset('admin_assets/js/jq.js') }}"></script>
-  <script type="text/javascript" scr="{{ asset('admin_assets/js/animatelo.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin_assets/js/jq.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin_assets/js/animatelo.min.js') }}"></script>
 
   @endsection
