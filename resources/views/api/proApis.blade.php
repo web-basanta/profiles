@@ -2,7 +2,7 @@
   
 @section('title', 'Detail Apis')
   
-@section('contents')
+@section('content')
     <hr />
     <div class="card shadow mb-4">
         <div class="card-header py-3">
