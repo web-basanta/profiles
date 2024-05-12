@@ -13,7 +13,10 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item  
+        @if (request()->routeIs('dashboard')) active 
+        @else '' 
+        @endif">
             <a class="nav-link" href="{{ url('/dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
@@ -28,7 +31,11 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item @if (request()->routeIs('roles.*')) active 
+            @elseif (request()->routeIs('users.*')) active 
+            @elseif (request()->routeIs('products.*')) active 
+            @else '' 
+            @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Components</span>
@@ -55,7 +62,10 @@
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item @if (request()->routeIs('profile.*')) active 
+            @elseif (request()->routeIs('api.*')) active 
+            @else '' 
+            @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Profile</span>
@@ -67,7 +77,7 @@
                     @else
                         @canany(['create-profile', 'edit-profile', 'delete-profile'])
                             <a class="collapse-item" href="{{ route('profile.index') }}">Profile Creation</a>
-                            {{-- <a class="collapse-item" href="{{ route('profile/api')}}">Profiles API's</a> --}}
+                            <a class="collapse-item" href="{{ route('api.proApis')}}">Profiles API's</a>
                         @endcanany
                     @endguest
                 </div>
@@ -75,9 +85,11 @@
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item @if (request()->routeIs('games.*')) active 
+            @else '' 
+            @endif">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGames" aria-expanded="false" aria-controls="collapseGames">
-                <i class="fas fa-fw fa-games"></i>
+                <i class="fab fa-xbox"></i>
                 <span>Games</span>
             </a>
             <div id="collapseGames" class="collapse" aria-labelledby="headingGames" data-parent="#accordionSidebar" style="">
