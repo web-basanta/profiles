@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ApiviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,12 +49,12 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 //game added
 Route::get('/ticktak', [GameController::class, 'ticktak'])->name('games.ticktak');
 Route::get('/tetris', [GameController::class, 'tetris'])->name('games.tetris');
-Route::get('/api', [ApiController::class, 'index'])->name('api.proApis');
 
 Route::resources([
     'roles' => RoleController::class,
     'users' => UserController::class,
     'products' => ProductController::class,
     'profile' => ProfilesController::class,
+    'api' => ApiviewController::class,
     'games' => GameController::class,
 ]);

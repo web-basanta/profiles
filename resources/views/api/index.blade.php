@@ -1,35 +1,35 @@
 @extends('layouts.app')
   
-@section('title', 'Home profile')
+@section('title', 'Home URL')
   
 @section('content')
 <div class="card">
     <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">List profile</h5>
-            <a href="{{ route('profile.create') }}" class="btn btn-primary">Add profile</a>
+            <h5 class="mb-0">List URL/API's</h5>
+            <a href="{{ route('api.create', null) }}" class="btn btn-primary">Add API/URL</a>
         </div>
         <hr />
     </div>
-    <div class="card-body">
     @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success') }}
         </div>
     @endif
+    <div class="card-body">
     <table class="table table-striped table-bordered">
         <thead class="table-primary">
             <tr>
-                <th class="col-sm-1">S. No</th>
-                <th class="col-sm-1">Full Name</th>
-                <th class="col-sm-2">Address</th>
-                <th class="col-sm-2">Emails</th>
-                <th class="col-sm-1">Some Info</th>
-                <th class="col-sm-3">Action</th>
+                <th class="col-sm-1">Profile Name</th>
+                <th class="col-sm-1">URL's</th>
+                <th class="col-sm-1">Endpoints</th>
+                <th class="col-sm-1">Created</th>
+                <th class="col-sm-1">Updated</th>
+                <th class="col-sm-1">Action</th>
             </tr>
         </thead>
-        <tbody>
-            @if($profile->count() > 0)
+        <tbody>+
+            {{-- @if($profile->count() > 0)
           
                 @foreach($profile as $rs)
                     <tr>                
@@ -62,7 +62,7 @@
                         <td class="col-sm-3 align-middle">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a href="#" type="button" class="btn btn-success"> <i class="fas fa-sync-alt" ></i> </a>
-                                <a href="{{ route('api.show', $rs->id) }}" type="button" class="btn btn-primary">API/URL</a>
+                                <a href="{{ route('api.index', $rs->id) }}" type="button" class="btn btn-primary">API/URL</a>
                                 <a href="{{ route('profile.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
                                 <a href="{{ route('profile.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
                                 <form action="{{ route('profile.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
@@ -78,9 +78,8 @@
                 <tr>
                     <td class="text-center" colspan="5">profile not found</td>
                 </tr>
-            @endif
+            @endif --}}
         </tbody>
     </table>
     </div>
-</div>
 @endsection
