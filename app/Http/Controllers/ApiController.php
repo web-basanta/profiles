@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Api;
 use Illuminate\Http\Request;
 use App\Models\Profiles;
 use App\Models\User;
@@ -14,81 +13,6 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     //
-    //     //$api = Api::orderBy('created_at', 'DESC')->get();
-    //     //return view('api.proApis', compact('api'));
-    //     return view('api.proApis');
-    // }
-
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Api  $Api
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Request $id)
-    // {
-    //     //
-    //     $p = Profiles::orderBy('created_at', 'desc')->paginate(3);
-    //     return $id;//"ok";//$id;
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Api  $Api
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Api $Api)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Models\Api  $Api
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, Api $Api)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\Api  $Api
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(Api $Api)
-    // {
-    //     //
-    // }
     public function index()
     {
         return response()->json(Profiles::all());
@@ -100,7 +24,7 @@ class ApiController extends Controller
         if ($user) {
             return response()->json($user);
         }
-        return response()->json(['message' => 'User not found'], 404);
+        return response()->json(['message' => 'Profile not found'], 404);
     }
 
     public function store(Request $request)
