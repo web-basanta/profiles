@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ApiviewController;
+use App\Http\Controllers\PublicViewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 //game added
 Route::get('/ticktak', [GameController::class, 'ticktak'])->name('games.ticktak');
 Route::get('/tetris', [GameController::class, 'tetris'])->name('games.tetris');
+Route::get('/profile-url/{name}/{api_key}', [PublicViewController::class, 'show']);
 
 Route::resources([
     'roles' => RoleController::class,
