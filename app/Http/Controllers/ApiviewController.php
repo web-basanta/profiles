@@ -90,7 +90,7 @@ class ApiviewController extends Controller
         //$name = $profile->name;
         $nameObject = json_decode($profile->name);
         $fName = $nameObject->{'f-name'};
-        $url = url('/')."/".$fName."/".$key;
+        $url = url('/')."/profile-url/".$fName."/".$key;
         
         $user_id = Api::where('user_id', $id)->get();
   
@@ -143,7 +143,7 @@ class ApiviewController extends Controller
                 $nameObject = json_decode($profile->name);
                 $fName = $nameObject->{'f-name'};
                 $profile->key = $key;
-                $profile->url = $url."/".$fName."/".$key;
+                $profile->url = $url."profile-url/".$fName."/".$key;
             });
             return view('api.edit', compact('profile'));
         }
