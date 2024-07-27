@@ -73,6 +73,11 @@ class ApiviewController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|min:3',
+        ]);
+        dd($request);
     }
 
     /**
