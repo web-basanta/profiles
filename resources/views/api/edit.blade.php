@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('api.store') }}" method="post">
+            <form action="{{ route('api.store')  }}" method="post">
                 @csrf
 
                 <div class="mb-3 row">
